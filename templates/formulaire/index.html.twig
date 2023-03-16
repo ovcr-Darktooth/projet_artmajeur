@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .erreur { width: 100%; background: #ff0000;}
+    .ok { width: 100%; background: #00ff00;}
+</style>
+
+<div class="example-wrapper">
+    <h1>Formulaire de contact</h1>
+
+    {% if info %}
+        {% if info == "erreur" %}
+        <div class="erreur">Une ou plusieurs informations sont manquantes</div>
+        {% endif %}
+
+        {% if info == "ok" %}
+        <div class="ok">Demande enregistrée</div>
+        {% endif %}
+    {% endif %}
+
+    <form action="" method="post">
+        <input type="text" name="nom" placeholder="Nom">
+        <input type="text" name="prenom" placeholder="Prénom">
+        <input type="email" name="email" placeholder="Email">
+        <textarea name="demande" placeholder="Expliquez votre demande de contact"></textarea>
+        <button type="submit">Envoyer</button>
+    </form>
+</div>
+{% endblock %}

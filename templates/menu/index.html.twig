@@ -1,0 +1,47 @@
+
+
+{% block body %}
+
+<style>
+    .navbarStyle { 
+        background-color: #0069d9;
+        border-bottom: 4px solid black;
+        border-right: 4px solid black;
+    }
+
+    .styleActif{
+        color:white;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+            <nav class="navbar navbar-expand-lg navbarStyle">
+                <div class="container-fluid">
+                    <div class="row d-flex bd-highlight">
+                        <div class="" id="navbarNav">
+                            <ul class="navbar-nav flex-row">
+                                <li class="nav-item">
+                                    <a class="nav-link {{ app.request.pathinfo == path('app_formulaire') ? 'styleActif' : '' }}" href="{{ path('app_formulaire') }}" ">Nous contacter</a>
+                                </li>
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN') %}
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ app.request.pathinfo == path('app_administration') ? 'styleActif' : '' }}" href="{{ path('app_administration') }}">Administration</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ app.request.pathinfo == path('app_login') ? 'styleActif' : '' }}" href="{{ path('app_login') }}">Se connecter</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %}

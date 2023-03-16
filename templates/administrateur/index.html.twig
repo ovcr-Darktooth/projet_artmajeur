@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .cadre { width: 100%; background: #A0A0A0; border: 1px solid #000000; margin-bottom: 1em; padding: 1em;}
+</style>
+
+<div class="example-wrapper">
+    <h1>Gestion des demandes</h1>
+
+    {% for email,demandes in utilisateurs %}
+        <h3>Demandes de {{email}} : <h3/><br/>
+        {% for index,donnees in demandes %}
+            <div class="cadre">
+                Nom : {{ donnees.nom }} <br/>
+                Prénom :  {{ donnees.prenom }} <br/>
+                Demande :  {{ donnees.demande }}  <br/> 
+                <form action="" method="post">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <input type="hidden" name="index" value="{{ index }}">
+                    Traitée : <input type="checkbox" name="status" onclick="this.form.submit();" {{ (donnees.status == "1") ? "checked" : "" }}/>
+                    <input type="submit" hidden>
+                </form>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
+{% endblock %}
